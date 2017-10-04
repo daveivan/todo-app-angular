@@ -1,0 +1,20 @@
+<div class="todo-wrapper">
+  <div class="todo" [ngClass]="{completed: todo.completed}">
+    <div class="timestamp">{{ todo.created.toLocaleString() }}</div>
+    <div class="text">
+      <a class="btn checkbox-link" (click)="onCheckboxClick()"></a>
+      <span>{{ todo.text }}</span>
+    </div>
+    <div class="controls">
+      <button *ngIf="displayToggleBtn" class="toggle-btn btn" (click)="onToggleClick()">
+        <span class="counter">{{ todo.subList.todos.length }}</span>
+      </button>
+      <button class="more-btn btn close" (click)="onMoreClick()"></button>
+      <button class="del-btn btn-menu" (click)="onDeleteTodoClick()" [ngClass]="{active: isMenuActive}" ></button>
+      <button class="edit-btn btn-menu" [ngClass]="{active: isMenuActive}"></button>
+    </div>
+  </div>
+
+  <!-- If todo contain subList with SubTodos -->
+  <app-todo-list *ngIf="todo.expanded" [todoList]="todo.subList" [isRootList]="false"></app-todo-list>
+</div>

@@ -1,0 +1,11 @@
+<div class="todo-list">
+
+  <!-- foreach todos -->
+  <app-todo-item *ngFor="let todoItem of todoList.todos; let i = index" [todo]="todoItem" [displayToggleBtn]="isRootList" [index]="i"
+    (todoDeleted)="onTodoDeleted($event)"></app-todo-item>
+
+  <div class="new-todo todo-wrapper">
+    <input name="text" required placeholder="Add new todo." (keyup.enter)="onAddTodoClick()" #textInput>
+    <button class="submit-btn btn" (click)="onAddTodoClick()"></button>
+  </div>
+</div>
